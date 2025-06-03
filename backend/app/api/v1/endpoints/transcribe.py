@@ -2,7 +2,6 @@ from fastapi import APIRouter, File, UploadFile, HTTPException
 from pydantic import BaseModel
 from openai import OpenAI
 import os
-from pydub import AudioSegment  # Library for audio conversion
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 # Define the response schema
