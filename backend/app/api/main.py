@@ -22,6 +22,3 @@ app.include_router(reflect.router, prefix="/api/v1")
 def root():
     return {"message": "Voice Journal API is live."}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
