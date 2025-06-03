@@ -7,4 +7,3 @@ pydantic
 aiofiles
 python-multipart
 apscheduler
-gunicorn
