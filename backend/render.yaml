@@ -3,7 +3,7 @@ services:
     name: fastapi-backend
     runtime: python
     buildCommand: pip install -r app/requirements.txt
-    startCommand: uvicorn app.api.v1.main:app --host 0.0.0.0 --port 10000
+    startCommand: gunicorn app.api.v1.main:app --worker-class uvicorn.workers.UvicornWorker
     envVars:
       - key: PORT
         value: 10000
