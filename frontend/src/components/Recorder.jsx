@@ -27,7 +27,7 @@ export default function Recorder({ onExchange, user }) {
           // Step 1: Transcribe audio
           const formData = new FormData();
           formData.append("file", blob, "recording.mp3");
-          const transcribeRes = await fetch("http://0.0.0.0:10000/api/v1/transcribe", {
+          const transcribeRes = await fetch("https://ai-voice-journaling.onrender.com/api/v1/transcribe", {
             method: "POST",
             body: formData,
           });
@@ -35,7 +35,7 @@ export default function Recorder({ onExchange, user }) {
           const transcribedData = await transcribeRes.json();
 
           // Step 2: Analyze emotions
-          const analyzeRes = await fetch("http://0.0.0.0:10000/api/v1/analyze", {
+          const analyzeRes = await fetch("https://ai-voice-journaling.onrender.com/api/v1/analyze", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -50,7 +50,7 @@ export default function Recorder({ onExchange, user }) {
           const analyzedData = await analyzeRes.json();
 
           // Step 3: Respond with insights
-          const respondRes = await fetch("http://0.0.0.0:10000/api/v1/respond", {
+          const respondRes = await fetch("https://ai-voice-journaling.onrender.com/api/v1/respond", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
