@@ -1,6 +1,7 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from pydantic import BaseModel
 from openai import OpenAI
+from pydub import AudioSegment
 import os
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
@@ -23,7 +24,7 @@ async def transcribe_audio(file: UploadFile = File(...)):
         # Convert the file to .mp3 format if necessary
         mp3_file_path = f"/tmp/{os.path.splitext(file.filename)[0]}.mp3"
         if not file.filename.endswith(".mp3"):
-            audio = AudioSegment.from_file(temp_file_path)
+            audio = AudioSegment.from_file(temp_file_path, format=file.content_type.split("/")[-1])
             audio.export(mp3_file_path, format="mp3")
             os.remove(temp_file_path)  # Remove the original file
         else:
