@@ -21,4 +21,3 @@ app.include_router(reflect.router, prefix="/api/v1")
 @app.get("/")
 def root():
     return {"message": "Voice Journal API is live."}
-
