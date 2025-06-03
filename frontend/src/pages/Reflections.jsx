@@ -13,6 +13,7 @@ export default function Reflections() {
       const { data, error } = await supabase
         .from("conversation_summaries")
         .select("summary, emotions")
+        .eq("user_id", user.id) // Filter by user_id
         .order("date", { ascending: false })
         .limit(7);
 
@@ -36,7 +37,7 @@ export default function Reflections() {
     };
 
     fetchReflectionData();
-  }, []);
+  }, [user]);
 
   return (
     <div className="space-y-6">

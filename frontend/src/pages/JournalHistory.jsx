@@ -9,6 +9,7 @@ export default function JournalHistory() {
       const { data, error } = await supabase
         .from("conversation_summaries")
         .select("date, summary")
+        .eq("user_id", user.id) // Filter by user_id
         .order("date", { ascending: false });
 
       if (error) {
@@ -19,7 +20,7 @@ export default function JournalHistory() {
     };
 
     fetchSummaries();
-  }, []);
+  }, [user]);
 
   return (
     <div className="space-y-6">

@@ -33,7 +33,7 @@ async def reflect_on_journals(request: ReflectRequest):
         end_date = datetime.utcnow()
         start_date = end_date - timedelta(days=7)
 
-        # Fetch journal summaries and emotions from the database
+        # Fetch journal summaries and emotions for the specific user
         response = supabase.table("conversation_summaries").select("*").filter(
             "user_id", "eq", request.user_id
         ).filter(
